@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "749155590289",
+    "firebase_url": "https://home-service-application-eecd2.firebaseio.com",
+    "project_id": "home-service-application-eecd2",
+    "storage_bucket": "home-service-application-eecd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749155590289:android:2f5873e6246f30d31e5f30",
+        "android_client_info": {
+          "package_name": "com.example.homecomfort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749155590289-vbbtbo6h6medke49tt24723mqi0jetp6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf1h4RpTGpsq6Sv1FrTZEXe-yeXlHWUZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749155590289-vbbtbo6h6medke49tt24723mqi0jetp6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749155590289:android:c04d32a0933c67941e5f30",
+        "android_client_info": {
+          "package_name": "com.example.homeserviceapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749155590289-vbbtbo6h6medke49tt24723mqi0jetp6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf1h4RpTGpsq6Sv1FrTZEXe-yeXlHWUZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749155590289-vbbtbo6h6medke49tt24723mqi0jetp6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
