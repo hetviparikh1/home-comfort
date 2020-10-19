@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -21,5 +22,12 @@ class HomeActivity : AppCompatActivity() {
       
 
 
+    }
+
+    override fun onBackPressed() {
+        if(dr.isDrawerOpen(GravityCompat.START))
+            dr.closeDrawer(GravityCompat.START)
+        else
+            super.onBackPressed()
     }
 }
