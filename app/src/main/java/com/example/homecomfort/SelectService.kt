@@ -82,7 +82,7 @@ class SelectService : Fragment() {
             var mauth= FirebaseAuth.getInstance()
             mauth.createUserWithEmailAndPassword(txtemail.text.toString(),txtpass.text.toString()).addOnCompleteListener {it->
                 if (it.isSuccessful){
-                    var d=Spuser(txtnm.text.toString(),txtcno.text.toString(),txtaddress.text.toString(),txtbdate.text.toString(),selservice.selectedItem.toString(),txtemail.text.toString())
+                    var d=Spuser(txtnm.text.toString(),txtcno.text.toString(),txtaddress.text.toString(),txtbdate.text.toString(),selservice.selectedItem.toString(),txtemail.text.toString()," "," "," "," "," ")
                     val database = FirebaseDatabase.getInstance()
                     val myRef = database.getReference("serviceProvider")
                     var uniq=FirebaseAuth.getInstance().currentUser?.uid

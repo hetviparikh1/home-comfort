@@ -54,42 +54,45 @@ class workPrefrences : Fragment() {
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("serviceProvider")
             var uniq= FirebaseAuth.getInstance().currentUser?.uid
-            var ar=Spuser()
+            var ar= Spuser()
             if (uniq != null) {
-                myRef.addValueEventListener(object : ValueEventListener {
+                myRef.child(uniq).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         // This method is called once with the initial value and again
 
-                        for (data in dataSnapshot.children) {
+                        ar.address = dataSnapshot.child("address").value.toString()
+                        ar.bday = dataSnapshot.child("bday").value.toString()
+                        ar.cno = dataSnapshot.child("cno").value.toString()
+                        ar.email = dataSnapshot.child("email").value.toString()
+                        ar.service = dataSnapshot.child("service").value.toString()
+                        ar.name = dataSnapshot.child("name").value.toString()
+                        ar.loc = txtloc.text.toString()
+                        ar.shift = spshift.selectedItem.toString()
+                        ar.time = txttime.text.toString()
+                        ar.exp = txtexp.selectedItem.toString()
+                        ar.disc = txtdec.text.toString()
+                        myRef.child(uniq.toString()).setValue(ar)
+                            .addOnCompleteListener {
+                                Toast.makeText(
+                                    context!!.applicationContext,
+                                    "saved",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                (activity as FragmentActivity).supportFragmentManager.beginTransaction()
+                                    .replace(
+                                        R.id.fragmentContainer,
+                                        Identity()
+                                    ).commit()
 
-                            progressBar.visibility=View.VISIBLE
-                            val value = data.getValue(Spuser::class.java)
-                            if (value != null) {
-                                ar=value
+
                             }
-                            progressBar.visibility=View.INVISIBLE
-                        }
-
-                        ar.loc=txtloc.text.toString()
-                        ar.shift=spshift.selectedItem.toString()
-                        ar.time=txttime.toString()
-                        ar.exp=txtexp.toString()
-                        ar.disc=txtdec.toString()
-                        myRef.child(uniq.toString()).setValue(ar).addOnCompleteListener {
-                            Toast.makeText(context!!.applicationContext,"saved", Toast.LENGTH_LONG).show()
-
-                            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
-                                Identity()
-                            ).commit()
-                        }
-
-
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        // Failed to read value
+                        TODO("Not yet implemented")
                     }
-                })
+            })
+
             }
 
 

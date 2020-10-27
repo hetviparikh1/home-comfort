@@ -1,13 +1,24 @@
 package com.example.homecomfort
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.fragment_identity.*
-import kotlinx.android.synthetic.main.fragment_select_service.*
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +34,7 @@ class Identity : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var imaguri: Uri?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +54,81 @@ class Identity : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        imageView.setOnClickListener {
+            CropImage.activity().setAspectRatio(1,1).start(activity!!)
+        }
+
         btnsub.setOnClickListener {
+
+
+            var postStorage= FirebaseStorage.getInstance().reference.child("Idproof")
+            if(imaguri!=null) {
+                val fileref = postStorage!!.child(UUID.randomUUID().toString())
+                val uploadTask = fileref.putFile(imaguri!!)
+                if (uploadTask != null) {
+                    uploadTask.addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            var downloadurl = fileref
+                            val database = FirebaseDatabase.getInstance()
+                            val myRef = database.getReference("serviceProvider")
+                            var uniq= FirebaseAuth.getInstance().currentUser?.uid
+                            var ar= Spuser()
+                            if (uniq != null) {
+                                myRef.child(uniq).addListenerForSingleValueEvent(object :
+                                    ValueEventListener {
+                                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                        // This method is called once with the initial value and again
+
+                                        ar = dataSnapshot.getValue(Spuser::class.java)!!
+                                        ar.idprof=spidprof.selectedItem.toString()
+                                        ar.img=downloadurl.toString()
+                                        ar.idno=txtidno.text.toString()
+                                        ar.adname=txtname.text.toString()
+                                        ar.adno=txtadharno.text.toString()
+
+                                        myRef.child(uniq.toString()).setValue(ar)
+                                            .addOnCompleteListener {
+                                                Toast.makeText(
+                                                    context!!.applicationContext,
+                                                    "saved",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                                (activity as FragmentActivity).supportFragmentManager.beginTransaction()
+                                                    .replace(
+                                                        R.id.fragmentContainer,
+                                                        Identity()
+                                                    ).commit()
+
+
+                                            }
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+                                        TODO("Not yet implemented")
+                                    }
+                                })
+
+                            }
+
+                        }
+                    }
+                }
+            }
 
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode== Activity.RESULT_OK && data!=null){
+            var result=CropImage.getActivityResult(data)
+            imaguri=result.uri
+            //     var bitmap= MediaStore.Images.Media.getBitmap(contentResolver,data.data)
+            imageView.setImageURI(imaguri)
+        }
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
