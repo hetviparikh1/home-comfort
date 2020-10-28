@@ -4,11 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -52,82 +52,66 @@ class Identity : Fragment() {
         return inflater.inflate(R.layout.fragment_identity, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        imageView.setOnClickListener {
-            CropImage.activity().setAspectRatio(1,1).start(activity!!)
-        }
-
-        btnsub.setOnClickListener {
-
-
-            var postStorage= FirebaseStorage.getInstance().reference.child("Idproof")
-            if(imaguri!=null) {
-                val fileref = postStorage!!.child(UUID.randomUUID().toString())
-                val uploadTask = fileref.putFile(imaguri!!)
-                if (uploadTask != null) {
-                    uploadTask.addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            var downloadurl = fileref
-                            val database = FirebaseDatabase.getInstance()
-                            val myRef = database.getReference("serviceProvider")
-                            var uniq= FirebaseAuth.getInstance().currentUser?.uid
-                            var ar= Spuser()
-                            if (uniq != null) {
-                                myRef.child(uniq).addListenerForSingleValueEvent(object :
-                                    ValueEventListener {
-                                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                        // This method is called once with the initial value and again
-
-                                        ar = dataSnapshot.getValue(Spuser::class.java)!!
-                                        ar.idprof=spidprof.selectedItem.toString()
-                                        ar.img=downloadurl.toString()
-                                        ar.idno=txtidno.text.toString()
-                                        ar.adname=txtname.text.toString()
-                                        ar.adno=txtadharno.text.toString()
-
-                                        myRef.child(uniq.toString()).setValue(ar)
-                                            .addOnCompleteListener {
-                                                Toast.makeText(
-                                                    context!!.applicationContext,
-                                                    "saved",
-                                                    Toast.LENGTH_LONG
-                                                ).show()
-                                                (activity as FragmentActivity).supportFragmentManager.beginTransaction()
-                                                    .replace(
-                                                        R.id.fragmentContainer,
-                                                        Identity()
-                                                    ).commit()
-
-
-                                            }
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                        TODO("Not yet implemented")
-                                    }
-                                })
-
-                            }
-
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode== Activity.RESULT_OK && data!=null){
             var result=CropImage.getActivityResult(data)
             imaguri=result.uri
-            //     var bitmap= MediaStore.Images.Media.getBitmap(contentResolver,data.data)
             imageView.setImageURI(imaguri)
         }
+        
     }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        imageView.setOnClickListener {
+            CropImage.activity().setAspectRatio(1, 1).start(activity!!)
+        }
+
+        btnsub.setOnClickListener {
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("serviceProvider")
+            var uniq= FirebaseAuth.getInstance().currentUser?.uid
+            var ar= Spuser()
+            if (uniq != null) {
+                myRef.child(uniq).addListenerForSingleValueEvent(object :
+                    ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        // This method is called once with the initial value and again
+
+                        ar = dataSnapshot.getValue(Spuser::class.java)!!
+                        ar.idprof = spidprof.selectedItem.toString()
+                        ar.img = ""
+                        ar.idno = txtidno.text.toString()
+                        ar.adname = txtname.text.toString()
+                        ar.adno = txtadharno.text.toString()
+
+                        myRef.child(uniq.toString()).setValue(ar)
+                            .addOnCompleteListener {
+                                Toast.makeText(
+                                    context!!.applicationContext,
+                                    "saved",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                (activity as FragmentActivity).supportFragmentManager.beginTransaction()
+                                    .replace(
+                                        R.id.fragmentContainer,
+                                        Identity()
+                                    ).commit()
+
+
+                            }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
+
+            }
+        }
+    }
+
+
 
     companion object {
         /**
