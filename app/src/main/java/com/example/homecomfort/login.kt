@@ -35,9 +35,7 @@ class login : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         btnskp.setOnClickListener {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
-                Home()
-            ).commit()
+       startActivity(Intent(this,HomeActivity::class.java))
         }
 
         sotp.setOnClickListener {
