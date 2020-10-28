@@ -1,5 +1,6 @@
 package com.example.homecomfort
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -78,12 +79,7 @@ class workPrefrences : Fragment() {
                                     "saved",
                                     Toast.LENGTH_LONG
                                 ).show()
-                                (activity as FragmentActivity).supportFragmentManager.beginTransaction()
-                                    .replace(
-                                        R.id.fragmentContainer,
-                                        Identity()
-                                    ).commit()
-
+                                startActivity(Intent(context,IdentityActivity::class.java) )
 
                             }
                     }

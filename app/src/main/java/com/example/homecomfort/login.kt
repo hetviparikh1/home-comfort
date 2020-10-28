@@ -9,6 +9,8 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -32,6 +34,12 @@ class login : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
+        btnskp.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                Home()
+            ).commit()
+        }
+
         sotp.setOnClickListener {
             verify()
             var dialog = Dialog(this)
@@ -47,21 +55,6 @@ class login : AppCompatActivity() {
             }
             dialog.show()
 
-
-//            var m =MaterialAlertDialogBuilder(this@login).setTitle("Verify OTP")
-//
-//
-//            var d = LayoutInflater.from(this@login).inflate(R.layout.otpdlg, null)
-//            m.setView(d).setPositiveButton("Add") { dialog, which ->
-//
-//                // Respond to positive button press
-//                var otp = d.votp.text.toString()
-//                check(otp)
-//
-//
-//
-//
-//            }.show()
         }
 
     }

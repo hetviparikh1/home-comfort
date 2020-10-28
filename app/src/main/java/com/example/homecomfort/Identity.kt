@@ -52,15 +52,7 @@ class Identity : Fragment() {
         return inflater.inflate(R.layout.fragment_identity, container, false)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode== Activity.RESULT_OK && data!=null){
-            var result=CropImage.getActivityResult(data)
-            imaguri=result.uri
-            imageView.setImageURI(imaguri)
-        }
-        
-    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         imageView.setOnClickListener {

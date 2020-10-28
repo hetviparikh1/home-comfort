@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
 
         dr.addDrawerListener(toggler)
         toggler.syncState()
-        movetoFragment(SelectService())
+        movetoFragment(Home())
 
         navigation.setNavigationItemSelectedListener {item ->
             when(item.itemId){
