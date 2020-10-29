@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@drawable/bg"
+        android:background="@drawable/back"
         android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/calendar" />
+                        android:src="@drawable/cal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/cal"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -191,7 +191,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/cal"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -233,7 +233,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/cal"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -279,7 +279,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/cal"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -320,7 +320,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/cal"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -364,7 +364,7 @@
                         android:layout_width="77dp"
                         android:layout_height="56dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/cal"
                         app:srcCompat="@android:drawable/ic_menu_gallery"
                         tools:ignore="VectorDrawableCompat" />
 
