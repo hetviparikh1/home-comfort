@@ -76,6 +76,7 @@ class Identity : Fragment() {
                         ar.idno = txtidno.text.toString()
                         ar.adname = txtname.text.toString()
                         ar.adno = txtadharno.text.toString()
+                        ar.ukey = uniq.toString()
 
                         myRef.child(uniq.toString()).setValue(ar)
                             .addOnCompleteListener {
