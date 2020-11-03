@@ -3,5 +3,14 @@
     <item
         android:id="@+id/bsp"
         android:title="Become Service Provider" ></item>
+    <item
+        android:id="@+id/lg"
+        android:title="Login" ></item>
+    <item
+        android:id="@+id/hp"
+        android:title="Home" ></item>
+    <item
+        android:id="@+id/rt"
+        android:title="Rate Us" ></item>
 
 </menu>

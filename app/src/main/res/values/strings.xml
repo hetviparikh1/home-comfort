@@ -24,15 +24,15 @@
     </string-array>
 
     <string-array name="city">
-    <item>Select City</item>
-    <item>Patan</item>
-    <item>Navasari</item>
-    <item>Ahmedabad</item>
-    <item>Surat</item>
-    <item>Nadiad</item>
-    <item>Bhuj</item>
-    <item>Anand</item>
-    <item>Rajkot</item>
-    <item>Jamnagar</item>
-</string-array>
+        <item>Select City</item>
+        <item>Patan</item>
+        <item>Navasari</item>
+        <item>Ahmedabad</item>
+        <item>Surat</item>
+        <item>Nadiad</item>
+        <item>Bhuj</item>
+        <item>Anand</item>
+        <item>Rajkot</item>
+        <item>Jamnagar</item>
+    </string-array>
 </resources>
