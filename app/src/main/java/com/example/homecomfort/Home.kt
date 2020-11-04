@@ -59,6 +59,84 @@ class Home : Fragment() {
             ).commit()
 
         }
+        plumber.setOnClickListener {
+            var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
+            var edt =sp.edit()
+            edt.putString("unm","plumber")
+            edt.putString("ct",spCt.selectedItem.toString())
+            edt.apply()
+            edt.commit()
+            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                SpDetail()
+            ).commit()
+
+        }
+
+        housemaid.setOnClickListener {
+
+            var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
+            var edt =sp.edit()
+            edt.putString("unm","Home maid")
+            edt.putString("ct",spCt.selectedItem.toString())
+            edt.apply()
+            edt.commit()
+            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                SpDetail()
+            ).commit()
+
+        }
+        pest.setOnClickListener {
+
+            var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
+            var edt =sp.edit()
+            edt.putString("unm","Pest control")
+            edt.putString("ct",spCt.selectedItem.toString())
+            edt.apply()
+            edt.commit()
+            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                SpDetail()
+            ).commit()
+
+        }
+        carpenter.setOnClickListener {
+            var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
+            var edt =sp.edit()
+            edt.putString("unm","Carpenter")
+            edt.putString("ct",spCt.selectedItem.toString())
+            edt.apply()
+            edt.commit()
+            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                SpDetail()
+            ).commit()
+
+        }
+
+        gardening.setOnClickListener {
+
+            var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
+            var edt =sp.edit()
+            edt.putString("unm","Gardening")
+            edt.putString("ct",spCt.selectedItem.toString())
+            edt.apply()
+            edt.commit()
+            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                SpDetail()
+            ).commit()
+
+        }
+        laundry.setOnClickListener {
+            var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
+            var edt =sp.edit()
+            edt.putString("unm","Laundry Service")
+            edt.putString("ct",spCt.selectedItem.toString())
+            edt.apply()
+            edt.commit()
+            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                SpDetail()
+            ).commit()
+
+        }
+
     }
 
     companion object {
