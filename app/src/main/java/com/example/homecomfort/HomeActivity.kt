@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.google.firebase.auth.FirebaseAuth
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_identity.*
@@ -25,12 +26,20 @@ class HomeActivity : AppCompatActivity() {
         dr.addDrawerListener(toggler)
         toggler.syncState()
         movetoFragment(Home())
+        var uniq= FirebaseAuth.getInstance().currentUser
 
         navigation.setNavigationItemSelectedListener {item ->
             when(item.itemId){
                 R.id.bsp->{
-                    movetoFragment(SelectService()
-                    )
+                    if (uniq!=null)
+                    {
+                       startActivity(Intent(this,SpProfileActivity::class.java))
+                    }
+                    else {
+                        movetoFragment(
+                            SpLg()
+                        )
+                    }
                 }
 
             }

@@ -67,7 +67,7 @@ class workPrefrences : Fragment() {
                         ar.email = dataSnapshot.child("email").value.toString()
                         ar.service = dataSnapshot.child("service").value.toString()
                         ar.name = dataSnapshot.child("name").value.toString()
-                        ar.loc = txtloc.text.toString()
+                        ar.loc = txtloc.selectedItem.toString()
                         ar.shift = spshift.selectedItem.toString()
                         ar.time = txttime.text.toString()
                         ar.exp = txtexp.selectedItem.toString()
