@@ -70,11 +70,13 @@ class SpProfileActivity : AppCompatActivity() {
             }
         }
 
+        setSupportActionBar(topAppBar)
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.logout,menu)
+
         return super.onCreateOptionsMenu(menu)
     }
 

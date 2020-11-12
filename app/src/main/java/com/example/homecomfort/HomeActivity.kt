@@ -42,6 +42,26 @@ class HomeActivity : AppCompatActivity() {
                     }
                 }
 
+                R.id.rt->{
+
+                    if (uniq!=null)
+                    {
+                        movetoFragment(
+                            RateUs()
+                        )
+                    }
+                    else {
+
+                            startActivity(Intent(this,login::class.java))
+
+                    }
+
+                }
+
+                R.id.lg->{
+                    startActivity(Intent(this,login::class.java))
+                }
+
             }
             dr.closeDrawer(GravityCompat.START)
             true

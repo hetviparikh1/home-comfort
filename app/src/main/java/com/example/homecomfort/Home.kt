@@ -1,6 +1,7 @@
 package com.example.homecomfort
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -44,22 +46,33 @@ class Home : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        var uniq= FirebaseAuth.getInstance().currentUser
 
         electrician.setOnClickListener {
 
-            var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
-            var edt =sp.edit()
-            edt.putString("unm","Electrician")
-            edt.putString("ct",spCt.selectedItem.toString())
-            edt.apply()
-            edt.commit()
-            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
-                SpDetail()
-            ).commit()
+            if (uniq!=null)
+            {
+                var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
+                var edt =sp.edit()
+                edt.putString("unm","Electrician")
+                edt.putString("ct",spCt.selectedItem.toString())
+                edt.apply()
+                edt.commit()
+                (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                    SpDetail()
+                ).commit()
+
+            }
+            else {
+
+                startActivity(Intent(context,login::class.java))
+
+            }
 
         }
         plumber.setOnClickListener {
+            if (uniq!=null)
+            {
             var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
             var edt =sp.edit()
             edt.putString("unm","plumber")
@@ -69,11 +82,18 @@ class Home : Fragment() {
             (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
                 SpDetail()
             ).commit()
+            }
+            else {
+
+                startActivity(Intent(context,login::class.java))
+
+            }
 
         }
 
         housemaid.setOnClickListener {
-
+            if (uniq!=null)
+            {
             var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
             var edt =sp.edit()
             edt.putString("unm","Home maid")
@@ -85,6 +105,14 @@ class Home : Fragment() {
             ).commit()
 
         }
+        else {
+
+            startActivity(Intent(context,login::class.java))
+
+        }
+
+
+    }
         pest.setOnClickListener {
 
             var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)

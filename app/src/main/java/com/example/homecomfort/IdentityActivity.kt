@@ -71,9 +71,6 @@ class IdentityActivity : AppCompatActivity() {
                                                     "saved",
                                                     Toast.LENGTH_LONG
                                                 ).show()
-                                                startActivity(Intent(this@IdentityActivity,SpProfileActivity::class.java))
-                                                finish()
-
 
                                             }
                                     }
@@ -84,6 +81,8 @@ class IdentityActivity : AppCompatActivity() {
                                 })
 
                             }
+                            startActivity(Intent(this@IdentityActivity,SpProfileActivity::class.java))
+                            finish()
                         }
                     }
 

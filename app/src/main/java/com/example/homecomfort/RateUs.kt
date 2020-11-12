@@ -1,16 +1,14 @@
 package com.example.homecomfort
 
-import android.app.ProgressDialog
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.fragment_sp_lg.*
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_rate_us.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,10 +17,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SpLg.newInstance] factory method to
+ * Use the [RateUs.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SpLg : Fragment() {
+class RateUs : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -37,33 +35,14 @@ class SpLg : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        spRg.setOnClickListener {
-            (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
-                SelectService()
-            ).commit()
+        var uniq= FirebaseAuth.getInstance().currentUser
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("Rating")
+        btnRt.setOnClickListener {
+            myRef.child(uniq!!.uid.toString()).setValue(ratingBar.rating.toString())
         }
 
-        spSn.setOnClickListener {
 
-            var uniq= FirebaseAuth.getInstance()
-            uniq.signInWithEmailAndPassword(spEm.text.toString(),spPs.text.toString()).addOnCompleteListener {
-                if(it.isSuccessful) {
-                    var user = uniq.currentUser
-                    startActivity(Intent(context,SpProfileActivity::class.java) )
-
-
-                }
-                else
-
-                {
-                    var progressDialog= ProgressDialog(context)
-                    progressDialog.setTitle("Incorrect Email Or Password!!")
-                    progressDialog.show()
-
-                }
-        }
-
-        }
     }
 
     override fun onCreateView(
@@ -71,7 +50,7 @@ class SpLg : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sp_lg, container, false)
+        return inflater.inflate(R.layout.fragment_rate_us, container, false)
     }
 
     companion object {
@@ -81,12 +60,12 @@ class SpLg : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SpLg.
+         * @return A new instance of fragment RateUs.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SpLg().apply {
+            RateUs().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
