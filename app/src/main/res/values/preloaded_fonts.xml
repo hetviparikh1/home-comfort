@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/cardo</item>
         <item>@font/caveat_brush</item>
         <item>@font/cormorant_sc_light</item>
         <item>@font/cormorant_unicase_bold</item>
+        <item>@font/frank_ruhl_libre_medium</item>
+        <item>@font/playfair_display_italic</item>
     </array>
 </resources>

@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/bsp"
-        android:title="Become Service Provider" ></item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/bsp"
+            android:icon="@drawable/sic"
+            android:title="Become Service Provider"></item>
     <item
         android:id="@+id/lg"
-        android:title="Login" ></item>
+        android:title="Login"
+        android:icon="@drawable/lic"></item>
     <item
         android:id="@+id/hp"
-        android:title="Home" ></item>
+        android:title="Home"
+        android:icon="@drawable/hic"></item>
     <item
         android:id="@+id/rt"
-        android:title="Rate Us" ></item>
+        android:title="Rate Us"
+        android:icon="@drawable/ric"></item>
+    </group>
 
 </menu>

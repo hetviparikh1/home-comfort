@@ -24,7 +24,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="26dp"
-                android:src="@drawable/logo" />
+                android:src="@drawable/lg" />
 
             <Spinner
                 android:id="@+id/spCt"
@@ -242,7 +242,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/plb" />
+                        android:src="@drawable/pst" />
 
 
                     <TextView
@@ -289,7 +289,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/lnd" />
 
