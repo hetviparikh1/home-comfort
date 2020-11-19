@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_identity.*
+import kotlin.system.exitProcess
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,6 +90,7 @@ class HomeActivity : AppCompatActivity() {
             dr.closeDrawer(GravityCompat.START)
         else
             super.onBackPressed()
+            exitProcess(1)
     }
 
 }

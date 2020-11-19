@@ -3,20 +3,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/bsp"
-            android:icon="@drawable/sic"
+            android:icon="@drawable/ic_baseline_person_24"
             android:title="Become Service Provider"></item>
     <item
         android:id="@+id/lg"
         android:title="Login"
-        android:icon="@drawable/lic"></item>
+        android:icon="@drawable/ic_baseline_lock_24"></item>
     <item
         android:id="@+id/hp"
         android:title="Home"
-        android:icon="@drawable/hic"></item>
+        android:icon="@drawable/ic_baseline_home_24"></item>
     <item
         android:id="@+id/rt"
         android:title="Rate Us"
-        android:icon="@drawable/ric"></item>
+        android:icon="@drawable/ic_baseline_rate_review_24"></item>
     </group>
 
 </menu>

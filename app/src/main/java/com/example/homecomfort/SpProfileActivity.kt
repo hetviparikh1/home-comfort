@@ -1,11 +1,15 @@
 package com.example.homecomfort
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.Window
 import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -21,6 +25,7 @@ class SpProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sp_profile)
         var ar = Spuser()
         var uniq= FirebaseAuth.getInstance().currentUser?.uid
+
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("serviceProvider")
         myRef.child(uniq!!).addValueEventListener(object : ValueEventListener {
@@ -47,6 +52,29 @@ class SpProfileActivity : AppCompatActivity() {
 
 
                 }
+                else
+                {
+
+
+                    MaterialAlertDialogBuilder(this@SpProfileActivity)
+                        .setTitle("Your Profile is rejected")
+                        .setMessage("You are not allow to visit this page")
+
+
+                        .setPositiveButton("Ok") { dialog, which ->
+                            // Respond to positive button press
+                            FirebaseAuth.getInstance().signOut()
+                            startActivity(Intent(this@SpProfileActivity, HomeActivity::class.java))
+                        }
+                        .show()
+
+
+
+
+
+                }
+
+
 
 
 
@@ -91,5 +119,11 @@ class SpProfileActivity : AppCompatActivity() {
 
             else ->super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, HomeActivity::class.java))
+        finish()
     }
 }
