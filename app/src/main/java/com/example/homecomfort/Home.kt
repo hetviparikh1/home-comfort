@@ -50,8 +50,7 @@ class Home : Fragment() {
 
         electrician.setOnClickListener {
 
-            if (uniq!=null)
-            {
+
                 var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
                 var edt =sp.edit()
                 edt.putString("unm","Electrician")
@@ -62,17 +61,12 @@ class Home : Fragment() {
                     SpDetail()
                 ).commit()
 
-            }
-            else {
 
-                startActivity(Intent(context,login::class.java))
 
-            }
 
         }
         plumber.setOnClickListener {
-            if (uniq!=null)
-            {
+
             var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
             var edt =sp.edit()
             edt.putString("unm","plumber")
@@ -82,18 +76,13 @@ class Home : Fragment() {
             (activity as FragmentActivity).supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
                 SpDetail()
             ).commit()
-            }
-            else {
 
-                startActivity(Intent(context,login::class.java))
 
-            }
 
         }
 
         housemaid.setOnClickListener {
-            if (uniq!=null)
-            {
+
             var sp = context!!.applicationContext.getSharedPreferences("MySp",Activity.MODE_PRIVATE)
             var edt =sp.edit()
             edt.putString("unm","Home maid")
@@ -104,12 +93,9 @@ class Home : Fragment() {
                 SpDetail()
             ).commit()
 
-        }
-        else {
 
-            startActivity(Intent(context,login::class.java))
 
-        }
+
 
 
     }

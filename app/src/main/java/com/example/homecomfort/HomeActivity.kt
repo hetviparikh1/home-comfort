@@ -62,6 +62,13 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(Intent(this,login::class.java))
                 }
 
+                R.id.hp->
+                {
+                    movetoFragment(
+                        Home()
+                    )
+                }
+
             }
             dr.closeDrawer(GravityCompat.START)
             true
